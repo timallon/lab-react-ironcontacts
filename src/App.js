@@ -24,15 +24,27 @@ function App() {
                 Popularity
               </h3>
             </th>
+            <th>
+              <h3>
+                Won Oscar
+              </h3>
+            </th>
+            <th>
+              <h3>
+                Won Emmy
+              </h3>
+            </th>
           </tr>
         </thead>
         <tbody>
           { contacts.map((oneCeleb) => { 
               return (
-                <tr>
+                <tr key={oneCeleb.id}>
                   <td><img style={{ height:"100px" }} src={oneCeleb.pictureUrl} alt="celeb pic"/></td>
                   <td>{oneCeleb.name}</td>
                   <td>{oneCeleb.popularity.toFixed(2)}</td>
+                  <td>{oneCeleb.wonOscar === true ? `🏆` : ``}</td>
+                  <td>{oneCeleb.wonEmmy === true ? `🏆` : ``}</td>
                 </tr>
 
               )
