@@ -2,10 +2,14 @@ import { useState } from 'react';
 import './App.css';
 import contactsJSON from './contacts.json';
 
-const firstFive = contactsJSON.slice(0,5)
+const firstFive = contactsJSON.slice(0,5);
+const remainingContacts = contactsJSON.slice(5);
+
+
 
 function App() {
   const [contacts, setContacts] = useState(firstFive)
+  const [moreContacts, setMoreContacts] = useState(remainingContacts)
   return (
     <div className="App">
       <table>
@@ -48,6 +52,21 @@ function App() {
                 </tr>
 
               )
+            }) 
+            }
+
+          { moreContacts.map((randomCeleb, i) => { 
+            if (i === Math.floor(Math.random() * (moreContacts.length - 1))) {
+              return (
+                <tr key={randomCeleb.id}>
+                  <td><img style={{ height:"100px" }} src={randomCeleb.pictureUrl} alt="celeb pic"/></td>
+                  <td>{randomCeleb.name}</td>
+                  <td>{randomCeleb.popularity.toFixed(2)}</td>
+                  <td>{randomCeleb.wonOscar === true ? `🏆` : ``}</td>
+                  <td>{randomCeleb.wonEmmy === true ? `🏆` : ``}</td>
+                </tr>
+
+              ) }
             }) 
             }
            
